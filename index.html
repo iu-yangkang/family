@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2024年度家庭保险配置清单</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: #4a90e2;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        th {
+            background: #f8f9fa;
+            padding: 15px 12px;
+            text-align: left;
+            font-weight: 600;
+            color: #495057;
+            border-bottom: 2px solid #dee2e6;
+        }
+
+        td {
+            padding: 15px 12px;
+            border-bottom: 1px solid #dee2e6;
+            vertical-align: top;
+        }
+
+        tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .person-name {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 15px;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .annual-total {
+            font-weight: 700;
+            color: #e74c3c;
+            font-size: 15px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .person-section {
+            border-top: 3px solid #4a90e2;
+        }
+
+        .person-section:first-child {
+            border-top: none;
+        }
+
+        .date-range {
+            font-weight: 500;
+            color: #2c3e50;
+        }
+
+        .insurance-type {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .medical {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .critical {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .accident {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .insurance-name {
+            font-weight: 500;
+            color: #2c3e50;
+            line-height: 1.4;
+        }
+
+        .cost {
+            font-weight: 600;
+            color: #e74c3c;
+            font-size: 15px;
+        }
+
+        .channel {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 3px 6px;
+            border-radius: 3px;
+            font-size: 11px;
+            margin-right: 5px;
+        }
+
+        .status {
+            background: #e8f5e8;
+            color: #2e7d32;
+            padding: 3px 6px;
+            border-radius: 3px;
+            font-size: 11px;
+        }
+
+        .total-row {
+            background: #f8f9fa;
+            font-weight: 600;
+        }
+
+        .total-row td {
+            border-top: 2px solid #dee2e6;
+        }
+
+        .annual-total {
+            font-weight: 700;
+            color: #e74c3c;
+            font-size: 16px;
+        }
+
+        .summary {
+            background: #4a90e2;
+            color: white;
+            padding: 25px;
+            border-radius: 6px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .summary h2 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .total-amount {
+            font-size: 36px;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 15px;
+            }
+
+            table {
+                font-size: 12px;
+            }
+
+            th, td {
+                padding: 10px 8px;
+            }
+
+            .total-amount {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>2024年底家庭保险配置清单</h1>
+            <p>让我为家庭保驾护航</p>
+        </div>
+
+        <div class="content">
+            <table>
+                <thead>
+                    <tr>
+                        <th>家庭成员</th>
+                        <th>保险类型</th>
+                        <th>保险名称</th>
+                        <th>保障日期</th>
+                        <th>渠道/状态</th>
+                        <th>费用</th>
+                        <th>年度合计</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- 杨晏清 -->
+                    <tr class="person-section">
+                        <td rowspan="3" class="person-name">杨晏清</td>
+                        <td><span class="insurance-type medical">百万医疗</span></td>
+                        <td class="insurance-name">好医保 少儿长期医疗（0免赔）</td>
+                        <td class="date-range">2024-10-22 至 2025-10-21</td>
+                        <td>
+                            <span class="channel">支付宝</span>
+                            <span class="status">已支付</span>
+                        </td>
+                        <td class="cost">67元/月</td>
+                        <td rowspan="3" class="annual-total" id="yanqing-total">4885元</td>
+                    </tr>
+                    <tr>
+                        <td><span class="insurance-type critical">重疾险</span></td>
+                        <td class="insurance-name">君龙人寿 君龙小青龙5号A款少儿重大疾病保险（互联网）</td>
+                        <td class="date-range">2024-10-01 至 终身</td>
+                        <td>
+                            <span class="channel">深蓝保</span>
+                            <span class="status">已支付</span>
+                        </td>
+                        <td class="cost">4081元/年</td>
+                    </tr>
+                    <tr>
+                        <td><span class="insurance-type accident">意外险</span></td>
+                        <td class="insurance-name">待配置</td>
+                        <td class="date-range">-</td>
+                        <td>-</td>
+                        <td class="cost">待选择</td>
+                    </tr>
+
+                    <!-- 杨康 -->
+                    <tr class="person-section">
+                        <td rowspan="3" class="person-name">杨康</td>
+                        <td><span class="insurance-type medical">百万医疗</span></td>
+                        <td class="insurance-name">蓝医保 长期百万医疗（20年）</td>
+                        <td class="date-range">2024-09-26 至 2025-09-25</td>
+                        <td>
+                            <span class="channel">支付宝</span>
+                            <span class="status">已支付</span>
+                        </td>
+                        <td class="cost">24.42元/月</td>
+                        <td rowspan="3" class="annual-total" id="yangkang-total">3818元</td>
+                    </tr>
+                    <tr>
+                        <td><span class="insurance-type critical">重疾险</span></td>
+                        <td class="insurance-name">健康福.终身重疾险（升级版）</td>
+                        <td class="date-range">2024-09-26 至 2025-09-25</td>
+                        <td>
+                            <span class="channel">支付宝</span>
+                            <span class="status">已支付</span>
+                        </td>
+                        <td class="cost">269.73元/月</td>
+                    </tr>
+                    <tr>
+                        <td><span class="insurance-type accident">意外险</span></td>
+                        <td class="insurance-name">中国人保大护甲6号意外险（旗舰版）</td>
+                        <td class="date-range">2024-10-02 至 2025-10-01</td>
+                        <td>
+                            <span class="channel">深蓝保</span>
+                            <span class="status">已支付</span>
+                        </td>
+                        <td class="cost">288元/年</td>
+                    </tr>
+
+                    <!-- 左雅丹 -->
+                    <tr class="person-section">
+                        <td rowspan="3" class="person-name">左雅丹</td>
+                        <td><span class="insurance-type medical">百万医疗</span></td>
+                        <td class="insurance-name">关爱e生长期医疗保险</td>
+                        <td class="date-range">2024-10-10</td>
+                        <td>
+                            <span class="channel">人保寿险E服务</span>
+                            <span class="status">已支付</span>
+                        </td>
+                        <td class="cost">226元/年</td>
+                        <td rowspan="3" class="annual-total" id="zuoyadan-total">5187元</td>
+                    </tr>
+                    <tr>
+                        <td><span class="insurance-type critical">重疾险</span></td>
+                        <td class="insurance-name">健康福.终身重疾险（升级版）</td>
+                        <td class="date-range">2024-10-20 至 2025-10-19</td>
+                        <td>
+                            <span class="channel">支付宝</span>
+                            <span class="status">已支付</span>
+                        </td>
+                        <td class="cost">4665元/年</td>
+                    </tr>
+                    <tr>
+                        <td><span class="insurance-type accident">意外险</span></td>
+                        <td class="insurance-name">小蜜蜂5号综合意外险 尊享版</td>
+                        <td class="date-range">2024-10-02 至 2025-10-02</td>
+                        <td>
+                            <span class="channel">深蓝保</span>
+                            <span class="status">已支付</span>
+                        </td>
+                        <td class="cost">296元/年</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- 全家总计 -->
+            <div class="summary">
+                <h2>全家年度保费总计</h2>
+                <div class="total-amount" id="family-total">14890元</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 计算年度费用
+        function calculateAnnualCosts() {
+            // 杨晏清：67*12 + 4081 = 804 + 4081 = 4885
+            const yanqingTotal = 67 * 12 + 4081;
+
+            // 杨康：24.42*12 + 269.73*12 + 288 = 293.04 + 3236.76 + 288 = 3817.8
+            const yangkangTotal = Math.round((24.42 * 12 + 269.73 * 12 + 288) * 100) / 100;
+
+            // 左雅丹：226 + 4665 + 296 = 5187
+            const zuoyadanTotal = 226 + 4665 + 296;
+
+            // 全家总计
+            const familyTotal = yanqingTotal + yangkangTotal + zuoyadanTotal;
+
+            // 更新显示 - 不使用千位分隔符
+            document.getElementById('yanqing-total').textContent = yanqingTotal + '元';
+            document.getElementById('yangkang-total').textContent = Math.round(yangkangTotal) + '元';
+            document.getElementById('zuoyadan-total').textContent = zuoyadanTotal + '元';
+            document.getElementById('family-total').textContent = Math.round(familyTotal) + '元';
+        }
+
+        // 页面加载完成后计算费用
+        document.addEventListener('DOMContentLoaded', calculateAnnualCosts);
+    </script>
+</body>
+</html>
