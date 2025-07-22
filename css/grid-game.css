@@ -1,0 +1,727 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    max-width: 900px;
+    width: 100%;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 24px;
+}
+
+.grid-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 2px;
+    background-color: #ddd;
+    border: 2px solid #333;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 800px;
+    aspect-ratio: 1;
+}
+
+.cell {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    font-size: 16px;
+    font-weight: bold;
+    min-height: 140px;
+}
+
+/* 第一个格子的对角线样式 */
+.diagonal-cell {
+    background: #f8f9fa;
+    position: relative;
+}
+
+.diagonal-cell::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg,
+        transparent 49%,
+        #333 49%,
+        #333 51%,
+        transparent 51%);
+}
+
+.diagonal-cell::after {
+    content: '顺序';
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+}
+
+/* 添加方向文字 */
+.diagonal-cell .direction-text {
+    position: absolute;
+    top: 50%;
+    right: 25%;
+    transform: translate(50%, -50%);
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+}
+
+/* 方向箭头样式 - 带尾巴的完整箭头 */
+.direction {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    display: inline-block;
+}
+
+/* 向上箭头 */
+.direction.up::before {
+    content: '';
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    width: 14px;
+    height: 32px;
+    background-color: #F44336;
+}
+
+.direction.up::after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 20px solid #F44336;
+}
+
+/* 向下箭头 */
+.direction.down::before {
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: 18px;
+    width: 14px;
+    height: 32px;
+    background-color: #F44336;
+}
+
+.direction.down::after {
+    content: '';
+    position: absolute;
+    top: 25px;
+    left: 10px;
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 20px solid #F44336;
+}
+
+/* 向左箭头 */
+.direction.left::before {
+    content: '';
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    width: 32px;
+    height: 14px;
+    background-color: #F44336;
+}
+
+.direction.left::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 5px;
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-right: 20px solid #F44336;
+}
+
+/* 向右箭头 */
+.direction.right::before {
+    content: '';
+    position: absolute;
+    top: 18px;
+    left: 0px;
+    width: 32px;
+    height: 14px;
+    background-color: #F44336;
+}
+
+.direction.right::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 25px;
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 20px solid #F44336;
+}
+
+/* 颜色圆点容器样式 */
+.color-dots-container {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 颜色圆点样式 */
+.color-dot {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 2px solid #333;
+    flex-shrink: 0;
+}
+
+.color-green { background-color: #4CAF50; }
+.color-purple { background-color: #9C27B0; }
+.color-red { background-color: #F44336; }
+.color-blue { background-color: #2196F3; }
+
+/* 刷新按钮样式 */
+.refresh-btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.refresh-btn:hover {
+    transform: translateY(-2px);
+}
+
+.refresh-btn:active {
+    transform: translateY(0);
+}
+
+/* 小鱼池样式 */
+.fish-pool {
+    margin-top: 30px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border: 2px dashed #ddd;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 10px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 小鱼样式 */
+.fish {
+    width: 60px;
+    height: 60px;
+    position: relative;
+    cursor: grab;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.fish:hover {
+    transform: scale(1.15) rotate(5deg);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+
+.fish:active {
+    cursor: grabbing;
+    transform: scale(0.95);
+}
+
+/* 小鱼emoji */
+.fish-emoji {
+    font-size: 32px;
+    transition: all 0.3s ease;
+    display: block;
+    line-height: 1;
+}
+
+.fish:hover .fish-emoji {
+    transform: scale(1.1);
+}
+
+/* 小鱼颜色滤镜 - 增强版 */
+.fish-green .fish-emoji {
+    filter: hue-rotate(100deg) saturate(3) brightness(1.3) contrast(1.2);
+}
+
+.fish-purple .fish-emoji {
+    filter: hue-rotate(260deg) saturate(3.5) brightness(1.4) contrast(1.3);
+}
+
+.fish-red .fish-emoji {
+    filter: hue-rotate(340deg) saturate(3) brightness(1.2) contrast(1.2);
+}
+
+.fish-blue .fish-emoji {
+    filter: hue-rotate(180deg) saturate(2.5) brightness(1.1) contrast(1.1);
+}
+
+
+
+/* 方向旋转 - 修正版 */
+.fish-up .fish-emoji { transform: rotate(90deg); }
+.fish-down .fish-emoji { transform: rotate(-90deg); }
+.fish-left .fish-emoji { transform: rotate(0deg); }
+.fish-right .fish-emoji { transform: rotate(180deg); }
+
+/* 悬停时保持旋转 */
+.fish-up:hover .fish-emoji { transform: rotate(90deg) scale(1.1); }
+.fish-down:hover .fish-emoji { transform: rotate(-90deg) scale(1.1); }
+.fish-left:hover .fish-emoji { transform: rotate(0deg) scale(1.1); }
+.fish-right:hover .fish-emoji { transform: rotate(180deg) scale(1.1); }
+
+/* 游戏格子状态 */
+.game-cell {
+    border: 2px dashed transparent;
+    transition: all 0.3s;
+}
+
+.game-cell:hover {
+    border-color: #667eea;
+    background-color: #f0f4ff;
+}
+
+.game-cell.correct {
+    background-color: #e8f5e8;
+    border-color: #4CAF50;
+}
+
+.game-cell.incorrect {
+    background-color: #ffe8e8;
+    border-color: #F44336;
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* iPad适配 */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .container {
+        max-width: 1000px;
+        padding: 40px;
+    }
+
+    .grid {
+        max-width: 900px;
+    }
+
+    .cell {
+        min-height: 160px;
+        font-size: 18px;
+    }
+
+    .diagonal-cell::after {
+        font-size: 16px;
+    }
+
+    .diagonal-cell .direction-text {
+        font-size: 16px;
+    }
+
+    .color-dot {
+        width: 35px;
+        height: 35px;
+    }
+
+    .direction {
+        width: 60px;
+        height: 60px;
+    }
+
+    /* iPad 向上箭头 */
+    .direction.up::before {
+        top: 22px;
+        left: 21px;
+        width: 18px;
+        height: 38px;
+    }
+
+    .direction.up::after {
+        top: 6px;
+        left: 12px;
+        border-left: 18px solid transparent;
+        border-right: 18px solid transparent;
+        border-bottom: 24px solid #F44336;
+    }
+
+    /* iPad 向下箭头 */
+    .direction.down::before {
+        top: 0px;
+        left: 21px;
+        width: 18px;
+        height: 38px;
+    }
+
+    .direction.down::after {
+        top: 30px;
+        left: 12px;
+        border-left: 18px solid transparent;
+        border-right: 18px solid transparent;
+        border-top: 24px solid #F44336;
+    }
+
+    /* iPad 向左箭头 */
+    .direction.left::before {
+        top: 21px;
+        left: 22px;
+        width: 38px;
+        height: 18px;
+    }
+
+    .direction.left::after {
+        top: 12px;
+        left: 6px;
+        border-top: 18px solid transparent;
+        border-bottom: 18px solid transparent;
+        border-right: 24px solid #F44336;
+    }
+
+    /* iPad 向右箭头 */
+    .direction.right::before {
+        top: 21px;
+        left: 0px;
+        width: 38px;
+        height: 18px;
+    }
+
+    .direction.right::after {
+        top: 12px;
+        left: 30px;
+        border-top: 18px solid transparent;
+        border-bottom: 18px solid transparent;
+        border-left: 24px solid #F44336;
+    }
+
+    /* iPad 小鱼池样式 */
+    .fish-pool {
+        grid-template-columns: repeat(8, 1fr);
+        gap: 12px;
+        padding: 25px;
+    }
+
+    .fish {
+        width: 70px;
+        height: 70px;
+    }
+
+    .fish-emoji {
+        font-size: 36px;
+    }
+}
+
+/* 移动端适配 */
+@media (max-width: 767px) {
+    .container {
+        padding: 20px;
+        margin: 10px;
+        max-width: 600px;
+    }
+
+    h1 {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    .grid {
+        max-width: 550px;
+    }
+
+    .cell {
+        min-height: 90px;
+        font-size: 14px;
+    }
+
+    .diagonal-cell::before {
+        top: 15%;
+        left: 18%;
+        font-size: 16px;
+    }
+
+    .diagonal-cell::after {
+        bottom: 15%;
+        right: 18%;
+        font-size: 16px;
+    }
+
+    .direction {
+        width: 42px;
+        height: 42px;
+    }
+
+    /* 手机 向上箭头 */
+    .direction.up::before {
+        top: 16px;
+        left: 16px;
+        width: 10px;
+        height: 26px;
+    }
+
+    .direction.up::after {
+        top: 4px;
+        left: 9px;
+        border-left: 12px solid transparent;
+        border-right: 12px solid transparent;
+        border-bottom: 16px solid #F44336;
+    }
+
+    /* 手机 向下箭头 */
+    .direction.down::before {
+        top: 0px;
+        left: 16px;
+        width: 10px;
+        height: 26px;
+    }
+
+    .direction.down::after {
+        top: 22px;
+        left: 9px;
+        border-left: 12px solid transparent;
+        border-right: 12px solid transparent;
+        border-top: 16px solid #F44336;
+    }
+
+    /* 手机 向左箭头 */
+    .direction.left::before {
+        top: 16px;
+        left: 16px;
+        width: 26px;
+        height: 10px;
+    }
+
+    .direction.left::after {
+        top: 9px;
+        left: 4px;
+        border-top: 12px solid transparent;
+        border-bottom: 12px solid transparent;
+        border-right: 16px solid #F44336;
+    }
+
+    /* 手机 向右箭头 */
+    .direction.right::before {
+        top: 16px;
+        left: 0px;
+        width: 26px;
+        height: 10px;
+    }
+
+    .direction.right::after {
+        top: 9px;
+        left: 22px;
+        border-top: 12px solid transparent;
+        border-bottom: 12px solid transparent;
+        border-left: 16px solid #F44336;
+    }
+
+    .color-dot {
+        width: 22px;
+        height: 22px;
+    }
+
+    .color-dots-container {
+        gap: 5px;
+    }
+
+    /* 移动端小鱼池样式 */
+    .fish-pool {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 8px;
+        padding: 15px;
+        margin-top: 20px;
+    }
+
+    .fish {
+        width: 50px;
+        height: 50px;
+    }
+
+    .fish-emoji {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 360px) {
+    .cell {
+        min-height: 75px;
+        font-size: 12px;
+    }
+
+    .diagonal-cell::before {
+        top: 15%;
+        left: 16%;
+        font-size: 14px;
+    }
+
+    .diagonal-cell::after {
+        bottom: 15%;
+        right: 16%;
+        font-size: 14px;
+    }
+
+    .direction {
+        width: 36px;
+        height: 36px;
+    }
+
+    /* 小屏 向上箭头 */
+    .direction.up::before {
+        top: 14px;
+        left: 14px;
+        width: 8px;
+        height: 22px;
+    }
+
+    .direction.up::after {
+        top: 3px;
+        left: 8px;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 14px solid #F44336;
+    }
+
+    /* 小屏 向下箭头 */
+    .direction.down::before {
+        top: 0px;
+        left: 14px;
+        width: 8px;
+        height: 22px;
+    }
+
+    .direction.down::after {
+        top: 19px;
+        left: 8px;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 14px solid #F44336;
+    }
+
+    /* 小屏 向左箭头 */
+    .direction.left::before {
+        top: 14px;
+        left: 14px;
+        width: 22px;
+        height: 8px;
+    }
+
+    .direction.left::after {
+        top: 8px;
+        left: 3px;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        border-right: 14px solid #F44336;
+    }
+
+    /* 小屏 向右箭头 */
+    .direction.right::before {
+        top: 14px;
+        left: 0px;
+        width: 22px;
+        height: 8px;
+    }
+
+    .direction.right::after {
+        top: 8px;
+        left: 19px;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        border-left: 14px solid #F44336;
+    }
+
+    .color-dot {
+        width: 18px;
+        height: 18px;
+    }
+
+    .color-dots-container {
+        gap: 3px;
+    }
+
+    /* 小屏幕小鱼池样式 */
+    .fish-pool {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 6px;
+        padding: 12px;
+        margin-top: 15px;
+    }
+
+    .fish {
+        width: 45px;
+        height: 45px;
+    }
+
+    .fish-emoji {
+        font-size: 24px;
+    }
+}
+
+
+
+
+
+
+
+
+
